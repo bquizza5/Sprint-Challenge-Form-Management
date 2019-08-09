@@ -34,7 +34,8 @@ const LoginForm = ({ errors, touched, status }) => {
             return(
                 <div className='user-card'>
                     
-                    <p>{JSON.stringify(user)}</p>
+                    <p>{user.message}</p>
+                    <p>Token: <span class='token'>{user.token}</span></p>
                     
                 </div>
             )})   
@@ -60,9 +61,10 @@ const FormikOnboardingForm = withFormik({
       axios
         .post('http://localhost:5000/api/register', {username: values.name, password: values.password})
         .then(res => {
-            let data = res.config.data
-            console.log(data)
-            setStatus(data);
+            console.log(res.data)
+            // let data = res.config.data
+            // console.log(data)
+            setStatus(res.data);
 
             })
         .catch(err => console.log(err.response));
