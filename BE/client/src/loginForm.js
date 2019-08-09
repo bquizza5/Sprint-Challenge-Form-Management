@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Field, withFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios'
 
 
-const LoginForm = ({ errors, touched, }) => {
+const LoginForm = ({ errors, touched, status }) => {
+    const [ users, setUsers ] = useState([])
+
+    useEffect(() => {
+    
+    if (status) {
+      setUsers([...users, status])
+      console.log(status)
+    }
+    }, [status]);
 
     return(
+        <>
         <Form className='form'>
         <Field data-testid='name' type="text" name="name" placeholder="Username" />
             {touched.name && errors.name && (
@@ -18,6 +28,18 @@ const LoginForm = ({ errors, touched, }) => {
 
         <button data-testid='submitButton' type="submit">Submit!</button>
       </Form>
+      {
+            users.map((user)=> {
+                // console.log(user.username)
+            return(
+                <div className='user-card'>
+                    
+                    <p>{JSON.stringify(user)}</p>
+                    
+                </div>
+            )})   
+        }
+        </>
     )
 }
 
@@ -34,11 +56,14 @@ const FormikOnboardingForm = withFormik({
       password: Yup.string().required(),
     }),
   
-    handleSubmit(values) {
+    handleSubmit(values, {setStatus}) {
       axios
         .post('http://localhost:5000/api/register', {username: values.name, password: values.password})
         .then(res => {
-            console.log(res)
+            let data = res.config.data
+            console.log(data)
+            setStatus(data);
+
             })
         .catch(err => console.log(err.response));
     }
