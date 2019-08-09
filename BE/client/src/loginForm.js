@@ -28,18 +28,18 @@ const LoginForm = ({ errors, touched, status }) => {
 
         <button data-testid='submitButton' type="submit">Submit!</button>
       </Form>
+      <div className='cards'>
       {
             users.map((user)=> {
                 // console.log(user.username)
             return(
-                <div className='user-card'>
-                    
-                    <p>{user.message}</p>
-                    <p>Token: <span class='token'>{user.token}</span></p>
-                    
+                <div key={user.token} className='user-card'>
+                    <p >{user.message}</p>
+                    <p>Token: <span className='token'>{user.token}</span></p>
                 </div>
             )})   
         }
+        </div>
         </>
     )
 }

@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+
 }
 
 .App-logo {
@@ -31,7 +32,26 @@
     transform: rotate(360deg);
   }
 }
-
+.form {
+  width: 200px;
+  margin: auto;
+}
 .token {
   font-size: 10px;
+  overflow-wrap: break-word;
+}
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.user-card {
+  width: 200px;
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px;
+}
+
+.error {
+  color: red;
 }
