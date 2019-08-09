@@ -8,15 +8,15 @@ const LoginForm = ({ errors, touched, }) => {
 
     return(
         <Form className='form'>
-        <Field type="text" name="name" placeholder="Username" />
+        <Field data-testid='name' type="text" name="name" placeholder="Username" />
             {touched.name && errors.name && (
-            <p className="error">{errors.name}</p>
+            <p data-testid='nameError' className="error">{errors.name}</p>
             )}
 
+        <Field data-testid='password' type="password" name="password" placeholder="password" />
+            {touched.password && errors.password && <p data-testid='passwordError' className="error">{errors.password}</p>}
 
-        <Field type="password" name="password" placeholder="password" />
-            {touched.password && errors.password && <p className="error">{errors.password}</p>}
-        <button type="submit">Submit!</button>
+        <button data-testid='submitButton' type="submit">Submit!</button>
       </Form>
     )
 }
