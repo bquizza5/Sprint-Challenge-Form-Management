@@ -8,7 +8,7 @@ const LoginForm = ({ errors, touched, }) => {
 
     return(
         <Form className='form'>
-        <Field type="text" name="name" placeholder="Name" />
+        <Field type="text" name="name" placeholder="Username" />
             {touched.name && errors.name && (
             <p className="error">{errors.name}</p>
             )}
