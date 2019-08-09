@@ -11,7 +11,6 @@ const LoginForm = ({ errors, touched, status }) => {
     
     if (status) {
       setUsers([...users, status])
-      console.log(status)
     }
     }, [status]);
 
@@ -31,7 +30,6 @@ const LoginForm = ({ errors, touched, status }) => {
       <div className='cards'>
       {
             users.map((user)=> {
-                // console.log(user.username)
             return(
                 <div key={user.token} className='user-card'>
                     <p >{user.message}</p>
@@ -62,8 +60,7 @@ const FormikOnboardingForm = withFormik({
         .post('http://localhost:5000/api/register', {username: values.name, password: values.password})
         .then(res => {
             console.log(res.data)
-            // let data = res.config.data
-            // console.log(data)
+           
             setStatus(res.data);
 
             })
